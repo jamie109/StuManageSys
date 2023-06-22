@@ -1,7 +1,9 @@
 package com.stuv2;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.StringJoiner;
 
 public class Test {
     public static void main(String[] args) {
@@ -132,7 +134,81 @@ public class Test {
         return true;
     }
     public static void login(ArrayList<Student> list){
-        System.out.println("登录");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("输入用户名");
+        String name = sc.next();
+        boolean userExist = false;
+        // 用户名存在
+        int index = -1;
+        for(int i = 0; i < list.size(); i++){
+            if(name.equals(list.get(i).getName())){
+                System.out.println("用户存在");
+                userExist = true;
+                index = i;
+            }
+        }
+        if (!userExist){
+            System.out.println("用户不存在，请先注册");
+            return;
+        }
+        System.out.println("输入密码");
+        String password = sc.next();
+        int count = 0;
+        while(true){
+            if(count > 6){
+                System.out.println("验证码输入错误次数过多，退出");
+                return;
+            }
+            String code = getCode();
+            System.out.println("----------");
+            System.out.println("|        |");
+            System.out.printf("| %s |\n", code);
+            System.out.println("|        |");
+            System.out.println("----------");
+            System.out.println("输入上面的验证码");
+            String inputCode = sc.next();
+            if(inputCode.equals(code)){
+                System.out.println("验证码输入正确");
+                break;
+            }
+            else {
+                System.out.println("重新获取验证码......");
+            }
+            count ++;
+        }
+        Student student = list.get(index);
+        for(int i = 0 ; i < 3; i++) {
+            if (password.equals(student.getPassword())) {
+                System.out.println("登录成功！");
+                return;
+            }
+            else{
+                System.out.printf("密码错误，重新输入密码，剩余次数 %s\n", 2 - i);
+                password = sc.next();
+            }
+        }
+        System.out.println("密码输入错误次数过多，退出");
+        return;
+    }
+    public static String getCode(){
+        char[] chs = new char[52];
+        int i = 0;
+        for(; i < 26; i++){
+            chs[i] = (char)('a' + i);
+        }
+        for(; i < 52; i++){
+            chs[i] = (char)('A' + i - 26);
+        }
+        // 验证码
+        StringBuilder strcode = new StringBuilder();
+        int k = 6;//6位验证码
+        Random r = new Random();
+        while(k > 0){
+            int tmp = r.nextInt(52);
+            strcode.append(chs[tmp]);
+            k--;
+        }
+        return strcode.toString();
     }
     public static ArrayList<Student> forgetPassword(ArrayList<Student> list){
         System.out.println("忘记密码");
