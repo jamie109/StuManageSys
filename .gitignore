@@ -29,4 +29,4 @@ bin/
 .DS_Store
 
 ### 配置文件
-.idea/
+##.idea/

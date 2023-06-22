@@ -35,7 +35,8 @@ public class SystemTest {
             }
             if (isExit) {
                 System.out.println("退出......");
-                break;
+                System.exit(0);
+               // break;
             }
         }
     }
