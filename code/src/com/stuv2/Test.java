@@ -36,7 +36,10 @@ public class Test {
     }
     public static void showMenu(){
         System.out.println("欢迎来到学生管理系统");
-        System.out.println("请选择操作：1登录 2注册 3忘记密码 4退出");
+        System.out.println("----------------------------------");
+        System.out.println("|         欢迎来到学生管理系统        |");
+        System.out.println("|请选择操作：1登录 2注册 3忘记密码 4退出 |");
+        System.out.println("-----------------------------------");
     }
     public static ArrayList<Student> signup(ArrayList<Student> list){
         Scanner sc = new Scanner(System.in);
