@@ -21,6 +21,7 @@ public class SystemTest {
                     stuList = addStu(stuList);
                     break;
                 case 2:
+                    stuList = deleteStu(stuList);
                     break;
                 case 3:
                     break;
@@ -67,6 +68,20 @@ public class SystemTest {
         }
         list.add(s);
         System.out.printf("添加学号为 %s 的学生成功！\n",id);
+        return list;
+    }
+    public static ArrayList<Student> deleteStu(ArrayList<Student> list){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("输入要删除学生的id ");
+        int id = sc.nextInt();
+        for(int i = 0; i < list.size(); i++){
+            if(list.get(i).getId() == id){
+                System.out.printf("成功删除学号为 %s 的学生！\n", id);
+                list.remove(i);
+                return list;
+            }
+        }
+        System.out.println("ERROR：未找到该学生id");
         return list;
     }
 }
