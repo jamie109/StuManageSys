@@ -1,7 +1,5 @@
-package com.jamie109;
+package com.stuv1;
 
-import javax.swing.text.AbstractDocument;
-import java.beans.beancontext.BeanContext;
 import java.util.ArrayList;
 import java.util.Scanner;
 

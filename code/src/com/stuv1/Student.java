@@ -1,4 +1,4 @@
-package com.jamie109;
+package com.stuv1;
 
 public class Student {
     private int id;
