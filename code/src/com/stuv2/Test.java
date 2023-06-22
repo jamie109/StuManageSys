@@ -211,7 +211,39 @@ public class Test {
         return strcode.toString();
     }
     public static ArrayList<Student> forgetPassword(ArrayList<Student> list){
-        System.out.println("忘记密码");
-        return list;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("输入用户名");
+        String name = sc.next();
+        boolean userExist = false;
+        int index = -1;
+        // 用户名存在
+        for(int i = 0; i < list.size(); i++){
+            if(name.equals(list.get(i).getName())){
+                System.out.println("用户名存在");
+                index = i;
+                userExist = true;
+            }
+        }
+        if(!userExist){
+            System.out.println("用户名不存在，请先注册");
+            return list;
+        }
+        System.out.println("输入身份证号");
+        String id = sc.next();
+        System.out.println("输入手机号");
+        String phonenumber = sc.next();
+        Student student = list.get(index);
+        if(phonenumber.equals(student.getPhoneNumber()) && id.equals(student.getID())){
+            System.out.println("输入新密码");
+            String newpsw = sc.next();
+            student.setPassword(newpsw);
+            System.out.println("重置密码成功");
+            return list;
+        }
+        else {
+            System.out.println("身份证号或手机号错误");
+            return list;
+        }
+
     }
 }
